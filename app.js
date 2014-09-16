@@ -44,7 +44,7 @@ var baggageList = setupBaggage();
 
 //console.log(baggageList[-8]);
 console.log(baggageList);
-
+//Testing out the answer for n = 5
 function sortBaggage(list) {
     list[8] = list[17];
     list[17] = "";
