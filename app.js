@@ -43,12 +43,11 @@ function findLastAB(list) {
 }
 
 var lastAB = findLastAB(baggageList);
-
+console.log(lastAB);
 function sortBaggage(list) {
     listLength = list.length;
     startPoint = listLength / 2 - 1;
-    moveOne = listLength - 3;
-    moveBaggage(list, 8, 17);
+    moveBaggage(list, 8, lastAB);
     moveBaggage(list, 17, 12);
     moveBaggage(list, 12, 15);
     moveBaggage(list, 15, 9);
