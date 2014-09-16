@@ -24,7 +24,6 @@ function setupBaggage() {
 
 var baggageList = setupBaggage();
 
-//console.log(baggageList[-8]);
 console.log("Before: " + baggageList);
 
 function moveBaggage(list, old_index, new_index) {
@@ -34,11 +33,22 @@ function moveBaggage(list, old_index, new_index) {
     list[nextToOld] = list[nextToNew], list[nextToNew] = "";
 }
 
+function findLastAB(list) {
+    for( i = list.length; i <= list.length; i--) {
+        if( list[i] == "B" ) {
+            var index = i - 1;
+            return index;
+        }
+    }
+}
+
+var lastAB = findLastAB(baggageList);
+
 function sortBaggage(list) {
     listLength = list.length;
     startPoint = listLength / 2 - 1;
     moveOne = listLength - 3;
-    moveBaggage(list, startPoint, moveOne);
+    moveBaggage(list, 8, 17);
     moveBaggage(list, 17, 12);
     moveBaggage(list, 12, 15);
     moveBaggage(list, 15, 9);
