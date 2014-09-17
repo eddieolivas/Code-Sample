@@ -68,3 +68,7 @@ function sortBaggage(list) {
 }
 
 sortBaggage(baggageList);
+
+// http://keet.wordpress.com/2014/06/28/acm-icpc-2014-solution-to-problem-a-baggage/
+
+// http://icpc.baylor.edu/download/worldfinals/problems/icpc2014.pdf
