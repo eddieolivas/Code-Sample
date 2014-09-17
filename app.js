@@ -60,21 +60,39 @@ function findFirstBag(list) {
     }
 }
 
+function findLastABbeforePair(list) {
+    for( i = list.length; i <= list.length; i--) {
+        var prev = i - 1;
+        var before = i - 2;
+        var beefore = i -3;
+        var index = i - 5;
+            
+        if( (list[i] == list[prev]) && (list[before] != list[beefore]) ) {
+            break;
+        }
+        return index;
+    }
+}
+
 var lastAB = findLastAB(baggageList);
 var firstBA = findFirstBA(baggageList);
 var firstBag = findFirstBag(baggageList);
-
+var lastABbeforePair = findLastABbeforePair(baggageList);
+console.log(lastABbeforePair);
 function sortBaggage(list) {
     listLength = list.length;
     startPoint = listLength / 2;
     firstMove = startPoint - 2;
-    console.log(firstBA);
     moveBaggage(list, firstMove, lastAB);
-    moveBaggage(list, 17, firstBA);
-    moveBaggage(list, 12, 15);
+    moveBaggage(list, lastAB, firstBA);
+    moveBaggage(list, firstBA, lastABbeforePair);
     moveBaggage(list, 15, 9);
     moveBaggage(list, 9, 18);
     console.log("After: " + list);
 }
 
 sortBaggage(baggageList);
+
+// http://keet.wordpress.com/2014/06/28/acm-icpc-2014-solution-to-problem-a-baggage/
+
+// http://icpc.baylor.edu/download/worldfinals/problems/icpc2014.pdf
