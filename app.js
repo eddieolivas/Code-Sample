@@ -42,13 +42,25 @@ function findLastAB(list) {
     }
 }
 
+function findFirstBA(list) {
+    for( i = list.length /2+1; i <= list.length; i++) {
+        if( list[i] == "B" ) {
+            var index = i;
+            return index;
+        }
+    }
+}
+
 var lastAB = findLastAB(baggageList);
-console.log(lastAB);
+var firstBA = findFirstBA(baggageList);
+
 function sortBaggage(list) {
     listLength = list.length;
-    startPoint = listLength / 2 - 1;
-    moveBaggage(list, 8, lastAB);
-    moveBaggage(list, 17, 12);
+    startPoint = listLength / 2;
+    firstMove = startPoint - 2;
+    console.log(firstBA);
+    moveBaggage(list, firstMove, lastAB);
+    moveBaggage(list, 17, firstBA);
     moveBaggage(list, 12, 15);
     moveBaggage(list, 15, 9);
     moveBaggage(list, 9, 18);
@@ -56,7 +68,3 @@ function sortBaggage(list) {
 }
 
 sortBaggage(baggageList);
-
-// http://keet.wordpress.com/2014/06/28/acm-icpc-2014-solution-to-problem-a-baggage/
-
-// http://icpc.baylor.edu/download/worldfinals/problems/icpc2014.pdf
