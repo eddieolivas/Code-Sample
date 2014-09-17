@@ -84,7 +84,7 @@ function findLastABbeforePair(list) {
 }
 
 function findFirstBAafterOne(list) {
-     for( i = list.length /2+1; i <= list.length; i++) {
+     for( i = list.length /2; i <= list.length; i++) {
         var next = i + 1;
         if( list[i] == "B" && list[next] == "A" ) {
             var index = i;
@@ -112,7 +112,7 @@ function sortBaggage(list) {
     console.log("move "+lastABbeforePair+" to "+firstBA);
     console.log("After move 3 : " + list);
     firstBAafterOne = findFirstBAafterOne(baggageList);
-    
+    console.log("firstBAafterOne = "+firstBAafterOne);
     moveBaggage(list, 15, 9);
     console.log("move 9 to 15");
     console.log("After move 4 : " + list);
