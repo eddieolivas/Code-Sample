@@ -96,10 +96,13 @@ function findFirstBAafterOne(list) {
 
 function findFirstPair(list) {
     var next = i + 1;
-    for( i = list.length / 2; i <= list.length; i++) {
-        if( list[i] == list[next] ) {
+    for( i = list.length / 2-2; i <= list.length; i++) {
+        if( (list[i] === list[next]) && list[i] == "B" ) {
             var pair = i;
             return pair;
+        }
+        else {
+            return 0;
         }
     }
 }
@@ -139,10 +142,10 @@ function sortBaggage(list) {
     moveBaggage(list, lastABbeforePair, firstBAafterOne);
     console.log("After move 4 : " + list);
     //moveBaggage(list, 25, 22);
-    firstPair = findFirstPair(baggageList);
-    console.log(firstPair);
-    firstOpenSpot = findFirstOpenSpot(baggageList);
-    console.log(firstOpenSpot);
+    var firstPair = findFirstPair(baggageList);
+    var firstOpenSpot = findFirstOpenSpot(baggageList);
+    console.log("firstPair = "+firstPair);
+    console.log("firstOpenSpot = "+firstOpenSpot);
     moveBaggage(list, 22, 15);
     moveBaggage(list, 15, 26);
     moveBaggage(list, 26, 19);
