@@ -1,4 +1,4 @@
-var n = 5;
+var n = 8;
 
 function isOdd(num) { return num % 2;}
 
@@ -101,7 +101,7 @@ function sortBaggage(list) {
     listLength = list.length;
     startPoint = listLength / 2;
     firstMove = startPoint - 2;
-    moveBaggage(list, firstMove, lastAB);
+    /*moveBaggage(list, firstMove, lastAB);
     console.log("move "+lastAB+" to "+firstMove);
     console.log("After move 1 : " + list);
     moveBaggage(list, lastAB, firstBA); 
@@ -110,15 +110,29 @@ function sortBaggage(list) {
     var lastABbeforePair = findLastABbeforePair(baggageList);
     moveBaggage(list, firstBA, lastABbeforePair);
     console.log("move "+lastABbeforePair+" to "+firstBA);
-    console.log("After move 3 : " + list);
-    firstBAafterOne = findFirstBAafterOne(baggageList);
+    console.log("After move 3 : " + list);*/
+    //moveBaggage(list, 14, 25);
+    moveBaggage(list, 25, 18);
+    moveBaggage(list, 18, 29);
+    moveBaggage(list, 29, 22);
+    moveBaggage(list, 22, 15);
+    moveBaggage(list, 15, 26);
+    moveBaggage(list, 26, 19);
+    moveBaggage(list, 19, 30);
+    
+    /*firstBAafterOne = findFirstBAafterOne(baggageList);
+    if( firstBAafterOne > startPoint ) {
+        moveBaggage(list, 15, firstBAafterOne);
+    }
+    else {
+        moveBaggage(list, 15, 9);
+    }
     console.log("firstBAafterOne = "+firstBAafterOne);
-    moveBaggage(list, 15, 9);
     console.log("move 9 to 15");
     console.log("After move 4 : " + list);
     moveBaggage(list, 9, 18);
-    console.log("move 18 to 9");
-   console.log("After: " + list);
+    console.log("move 18 to 9");*/
+    console.log("After: " + list);
 }
 
 sortBaggage(baggageList);
