@@ -163,8 +163,8 @@ function sortBaggage(list) {
     var listLength = list.length;
     var startPoint = listLength / 2;
     var firstMove = startPoint - 2;
-    moveBaggage(list, firstMove, lastAB);
-    console.log("move "+lastAB+" to "+firstMove);
+    console.log("move "+findLastAB(list)+" to "+firstMove);
+    moveBaggage(list, firstMove, findLastAB(list));
     console.log("After move 1 : " + list);
     moveBaggage(list, lastAB, firstBA); 
     console.log("move "+firstBA+" to "+lastAB);
@@ -197,8 +197,6 @@ function sortBaggage(list) {
     //moveBaggage(list, 26, 19);
     var lastAltPair = findLastAltPair(baggageList);
     var firstOpenSpot3 = findFirstOpenSpot(baggageList);
-    console.log("lastAltPair = "+lastAltPair);
-    console.log("firstOpenSpot3 = "+firstOpenSpot3);
     moveBaggage(list, firstOpenSpot3, lastAltPair);
     //moveBaggage(list, 19, 30);
     console.log("After: " + list);
