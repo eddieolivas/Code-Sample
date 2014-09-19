@@ -97,15 +97,25 @@ function findFirstBAafterOne(list) {
 function findFirstPair(list) {
     for( i = list.length / 2-2; i <= list.length; i++) {
         var next = i + 1;
-        if( (list[i] === list[next]) && list[i] == "B" ) {
+        if( (list[i] === list[next]) && (list[i] == "B" || list[i] == "A") ) {
             var pair = i;
             return pair;
         }
     }
 }
 
+function findLastPair(list) {
+    for( i = list.length - 2; i <= list.length; i--) {
+        var next = i - 1;
+        if( (list[i] === list[next]) && (list[i] == "A") ) {
+            var pair = i - 1;
+            return pair;
+        }
+    }
+}
+
 function findFirstOpenSpot(list) {
-    for( i = list.length / 2; i <= list.length; i++) {
+    for( i = list.length / 2 - 2; i <= list.length; i++) {
         var next = i + 1;
         if( list[i] === "" && list[next] === "") {
             var index = i;
@@ -141,11 +151,15 @@ function sortBaggage(list) {
     //moveBaggage(list, 25, 22);
     var firstPair = findFirstPair(baggageList);
     var firstOpenSpot = findFirstOpenSpot(baggageList);
-    console.log("firstPair = "+firstPair);
-    console.log("firstOpenSpot = "+firstOpenSpot);
     moveBaggage(list, firstOpenSpot, firstPair);
+     console.log("After move 5 : " + list);
     //moveBaggage(list, 22, 15);
-    moveBaggage(list, 15, 26);
+    var firstOpenSpot1 = findFirstOpenSpot(baggageList);
+    var lastPair = findLastPair(baggageList);
+    console.log("firstOpenSpot = "+firstOpenSpot1);
+    console.log("lastPair = "+lastPair);
+    moveBaggage(list, firstOpenSpot1, lastPair);
+    //moveBaggage(list, 15, 26);
     moveBaggage(list, 26, 19);
     moveBaggage(list, 19, 30);
     console.log("After: " + list);
