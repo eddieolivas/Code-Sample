@@ -79,7 +79,6 @@ function findLastABbeforePair(list) {
         else {
             continue;
         }
-        
     }
 }
 
@@ -155,9 +154,18 @@ function findFirstOpenSpot(list) {
     }
 }
 
-var lastAB = findLastAB(baggageList);
-var firstBA = findFirstBA(baggageList);
-var firstBag = findFirstBag(baggageList);
+function firstHalfSort(list) {
+    var listLength = list.length / 2;
+    var halfWay = listLength / 2;
+    var startPoint = listLength / 2;
+    var firstMove = startPoint - 2;
+    for(i=0; i <= listLength; i++ ) {
+        
+        if( i <= halfWay ) {
+            
+        }
+    }
+}
 
 function sortBaggage(list) {
     var listLength = list.length;
@@ -179,7 +187,7 @@ function sortBaggage(list) {
     console.log("After move 4 : " + list);
     //moveBaggage(list, 25, 22);
     moveBaggage(list, findFirstOpenSpot(list), findFirstPair(list));
-     console.log("After move 5 : " + list);
+    console.log("After move 5 : " + list);
     //moveBaggage(list, 22, 15);
     moveBaggage(list, findFirstOpenSpot(list), findLastPair(list));
     console.log("After move 6 : " + list);
