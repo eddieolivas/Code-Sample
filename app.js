@@ -166,8 +166,8 @@ function sortBaggage(list) {
     console.log("move "+findLastAB(list)+" to "+firstMove);
     moveBaggage(list, firstMove, findLastAB(list));
     console.log("After move 1 : " + list);
-    moveBaggage(list, lastAB, firstBA); 
-    console.log("move "+firstBA+" to "+lastAB);
+    console.log("move "+findFirstBA(list)+" to "+findFirstOpenSpot(list));
+    moveBaggage(list, findFirstOpenSpot(list), findFirstBA(list)); 
     console.log("After move 2 : " + list);
     var lastABbeforePair = findLastABbeforePair(baggageList);
     moveBaggage(list, firstBA, lastABbeforePair);
