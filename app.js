@@ -167,6 +167,7 @@ function firstHalfSort(list) {
     }
 }
 
+/* The sortBaggage function take all of the previous functions and puts them together to effectively solve the problem.*/
 function sortBaggage(list) {
     var listLength = list.length;
     var startPoint = listLength / 2;
