@@ -185,7 +185,7 @@ function sortBaggage(list) {
     var num = n - 2;
     var half = num / 2;
     var halfplus = half + 1;
-    for( e = 1; e <= num; e++ ) {
+    for( e = 1; e <= half; e++ ) {
         if( e < half && isOdd(e) ){
             console.log("move "+findLastABbeforePair(list)+" to "+findFirstOpenSpot(list));
             moveBaggage(list, findFirstOpenSpot(list), findLastABbeforePair(list));
@@ -200,33 +200,35 @@ function sortBaggage(list) {
              //moveBaggage(list, 25, 22);
              console.log("hit 2nd if. e = "+e);
         }
-        else if( e >= half  && isOdd(e) && e <= halfplus ){
+    }
+    for( f = half; f <= num; f++ ) {
+        if( isOdd(f) && f <= halfplus ){
             console.log("move "+findFirstPair(list)+" to "+findFirstOpenSpot(list));
             moveBaggage(list, findFirstOpenSpot(list), findFirstPair(list));
             console.log("After move 5 : " + list);
             //moveBaggage(list, 22, 15);
-            console.log("hit 3rd if. e = "+e);
+            console.log("hit 3rd if. f = "+f);
         }
-        else if( e >= half  && !isOdd(e) && e <= halfplus  ){
+        else if( !isOdd(f) && f <= halfplus  ){
             console.log("move "+findLastPair(list)+" to "+findFirstOpenSpot(list));
             moveBaggage(list, findFirstOpenSpot(list), findLastPair(list));
             console.log("After move 6 : " + list);
             //moveBaggage(list, 15, 26);
-            console.log("hit 4th if. e = "+e);
+            console.log("hit 4th if. f = "+f);
         }
-        else if( e > half + 1 && isOdd(e) ){
+        else if( f > halfplus && isOdd(f) ){
             console.log("move "+findFirstAltPair(list)+" to "+findFirstOpenSpot(list));
             moveBaggage(list, findFirstOpenSpot(list), findFirstAltPair(list));
             console.log("After move 7 : " + list);
             //moveBaggage(list, 26, 19);
-            console.log("hit 5th if. e = "+e);
+            console.log("hit 5th if. f = "+f);
         }
-        else if( e > half + 1 && !isOdd(e) ){
+        else if( f > halfplus && !isOdd(f) ){
             console.log("move "+findLastAltPair(list)+" to "+findFirstOpenSpot(list));
             moveBaggage(list, findFirstOpenSpot(list), findLastAltPair(list));
             console.log("After move 8 : " + list);
             //moveBaggage(list, 19, 30);
-            console.log("hit 6th if. e = "+e);
+            console.log("hit 6th if. f = "+f);
         }
         else {
             console.log("For loop finished. e = "+e);
