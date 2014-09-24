@@ -1,4 +1,4 @@
-var n = 8;
+var n = 16;
 
 function isOdd(num) { return num % 2;}
 
@@ -75,13 +75,26 @@ function findLastABbeforePair(list) {
 
 function findFirstBAafterOne(list) {
      for( i = list.length / 2 + 1; i <= list.length; i++) {
-        var next5 = i + 1;
+        var next = i + 1;
         var prev = i - 1;
         var prev1 = i - 2;
         var prev2 = i - 3;
-        if( list[i] == "B" && list[next5] == "A" && (list[prev] == "A" || (list[prev] == "B" && list[prev1] == "A" && list[prev2] == "A"))) {
+        if( list[i] == "B" && list[next] == "A" && (list[prev] == "A")) {
             var index = i;
             return index;
+        }
+     }
+}
+
+function findFirstBAafterPair(list) {
+    for( i = list.length / 2 - 2; i <= list.length; i++) {
+        var next = i + 1;
+        var next1 = i + 2;
+        var next2 = i + 3;
+        var next3 = i + 4;
+        var next4 = i + 5;
+        if( list[i] == list[next] && (list[next1] != list[next2]) && (list[next2] == "B" && list[next3] == "A")) {
+            return next2;
         }
      }
 }
@@ -143,8 +156,8 @@ function sortBaggage(list) {
             console.log("After move : " + list);
         }
         else if( !isOdd(e) ) {
-             console.log("2nd IF. e = "+e+" | Move "+findFirstBAafterOne(list)+" to "+findFirstOpenSpot(list));
-             moveBaggage(list, findFirstOpenSpot(list), findFirstBAafterOne(list));
+             console.log("2nd IF. e = "+e+" | Move "+findFirstBAafterPair(list)+" to "+findFirstOpenSpot(list));
+             moveBaggage(list, findFirstOpenSpot(list), findFirstBAafterPair(list));
              console.log("After move : " + list);
              //moveBaggage(list, 25, 22);
         }
