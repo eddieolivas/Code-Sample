@@ -1,4 +1,4 @@
-var n = 12;
+var n = 8;
 
 function isOdd(num) { return num % 2;}
 
@@ -25,7 +25,7 @@ function setupBaggage() {
 var baggageList = setupBaggage();
 
 console.log("Before: " + baggageList);
-
+console.log("n = "+n);
 function moveBaggage(list, old_index, new_index) {
     nextToOld = old_index + 1;
     nextToNew = new_index + 1;
@@ -45,15 +45,6 @@ function findLastAB(list) {
 function findFirstBA(list) {
     for( i = list.length /2+1; i <= list.length; i++) {
         if( list[i] == "B" ) {
-            var index = i;
-            return index;
-        }
-    }
-}
-
-function findFirstBag(list) {
-    for( i = 0; i <= list.length; i++) {
-        if( list[i] == "B" || list[i] == "A") {
             var index = i;
             return index;
         }
@@ -84,23 +75,15 @@ function findLastABbeforePair(list) {
 
 function findFirstBAafterOne(list) {
      for( i = list.length / 2 + 1; i <= list.length; i++) {
-        var next = i + 1;
+        var next5 = i + 1;
         var prev = i - 1;
-        if( list[i] == "B" && list[next] == "A" && list[prev] == "A") {
+        var prev1 = i - 2;
+        var prev2 = i - 3;
+        if( list[i] == "B" && list[next5] == "A" && (list[prev] == "A" || (list[prev] == "B" && list[prev1] == "A" && list[prev2] == "A"))) {
             var index = i;
             return index;
         }
      }
-}
-
-function findFirstPair(list) {
-    for( i = list.length / 2-2; i <= list.length; i++) {
-        var next = i + 1;
-        if( (list[i] === list[next]) && (list[i] == "B" || list[i] == "A") ) {
-            var pair = i;
-            return pair;
-        }
-    }
 }
 
 function findFirstBBpair(list) {
@@ -114,53 +97,12 @@ function findFirstBBpair(list) {
 
 function findFirstAApair(list) {
     for( i = list.length / 2; i <= list.length; i++) {
-        next = i + 1;
-        next1 = i - 1;
-        next2 = i - 2;
-        next3 = i - 3;
-        if( (list[i] === list[next]) && (list[i] == "A") && (list[next1] == "B" && list[next2] == "B" && list[next3]  == "B") ) {
+        var nextto = i + 1;
+        var next1 = i - 1;
+        var next2 = i - 2;
+        var next3 = i - 3;
+        if( (list[i] === list[nextto]) && (list[i] == "A") && (list[next1] == "B" && list[next2] == "B" && list[next3]  == "B") ) {
             return i;
-        }
-    }
-}
-
-function findLastPair(list) {
-    for( i = list.length - 2; i <= list.length; i--) {
-        var next = i - 1;
-        if( (list[i] === list[next]) && (list[i] == "A") ) {
-            var pair = i - 1;
-            return pair;
-        }
-    }
-}
-
-function findFirstAltPair(list) {
-    for( i = list.length / 2-2; i <= list.length; i++) {
-        var next = i + 1;
-        if( list[i] === list[next] ) {
-            continue;
-        }
-        else {
-            pair = i + 1;
-            return pair;
-        }
-    }
-}
-
-function findLastAltPair(list) {
-    for( i = list.length / 2-2; i <= list.length; i++) {
-        var next = i + 1;
-        var next2 = i + 2;
-        var prev = i - 1;
-        if( list[i] === list[next] ) {
-            continue;
-        }
-        else if( (list[i] !== list[next]) && (list[i] === "" || list[next] === "" || list[prev] === "") ) {
-            continue;
-        }
-        else {
-            var pair = i + 1;
-            return pair;
         }
     }
 }
