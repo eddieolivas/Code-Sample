@@ -1,4 +1,4 @@
-var n = 8;
+var n = 12;
 
 function isOdd(num) { return num % 2;}
 
@@ -83,12 +83,11 @@ function findLastABbeforePair(list) {
 }
 
 function findFirstBAafterOne(list) {
-     for( i = list.length / 2; i <= list.length; i++) {
+     for( i = list.length / 2 + 1; i <= list.length; i++) {
         var next = i + 1;
         var prev = i - 1;
-        if( list[i] == "B" && list[next] == "A" && list[prev] != "B") {
+        if( list[i] == "B" && list[next] == "A" && list[prev] == "A") {
             var index = i;
-            console.log("findFirstBAafterOne index = "+index);
             return index;
         }
      }
@@ -100,6 +99,27 @@ function findFirstPair(list) {
         if( (list[i] === list[next]) && (list[i] == "B" || list[i] == "A") ) {
             var pair = i;
             return pair;
+        }
+    }
+}
+
+function findFirstBBpair(list) {
+    for( i = list.length / 2-2; i <= list.length; i++) {
+        var next = i + 1;
+        if( (list[i] === list[next]) && (list[i] == "B") ) {
+            return i;
+        }
+    }
+}
+
+function findFirstAApair(list) {
+    for( i = list.length / 2; i <= list.length; i++) {
+        next = i + 1;
+        next1 = i - 1;
+        next2 = i - 2;
+        next3 = i - 3;
+        if( (list[i] === list[next]) && (list[i] == "A") && (list[next1] == "B" && list[next2] == "B" && list[next3]  == "B") ) {
+            return i;
         }
     }
 }
@@ -155,18 +175,6 @@ function findFirstOpenSpot(list) {
     }
 }
 
-function firstHalfSort(list) {
-    var listLength = list.length / 2;
-    var halfWay = listLength / 2;
-    var startPoint = listLength / 2;
-    var firstMove = startPoint - 2;
-    for(i=0; i <= listLength; i++ ) {
-        
-        if( i <= halfWay ) {
-            
-        }
-    }
-}
 
 /* The sortBaggage function take all of the previous functions and puts them together to effectively solve the problem.*/
 function sortBaggage(list) {
@@ -176,60 +184,54 @@ function sortBaggage(list) {
     console.log("move "+findLastAB(list)+" to "+firstMove);
     moveBaggage(list, firstMove, findLastAB(list));
     //moveBaggage(list, 14, 29);
-    //console.log("After move 1 : " + list);
+    console.log("After move 1 : " + list);
     console.log("move "+findFirstBA(list)+" to "+findFirstOpenSpot(list));
     moveBaggage(list, findFirstOpenSpot(list), findFirstBA(list)); 
     //moveBaggage(list, 29, 18);
-    //console.log("After move 2 : " + list);
+    console.log("After move 2 : " + list);
     
     
-    var half = n / 2;
-    var halfplus = half + 1;
+    var half = Math.ceil((n - 2) / 2);
+    var otherHalf = Math.ceil(n / 2);
     for( e = 1; e < half; e++ ) {
         if( isOdd(e) ){
-            console.log("hit 1st if. e = "+e);
-            console.log("move "+findLastABbeforePair(list)+" to "+findFirstOpenSpot(list));
+            console.log("1st IF. e = "+e+" | Move "+findLastABbeforePair(list)+" to "+findFirstOpenSpot(list));
             moveBaggage(list, findFirstOpenSpot(list), findLastABbeforePair(list));
             //moveBaggage(list, 18, 25);
-            console.log("After move 3 : " + list);
+            console.log("After move : " + list);
         }
         else if( !isOdd(e) ) {
-             console.log("hit 2nd if. e = "+e);
-             console.log("move "+findFirstBAafterOne(list)+" to "+findLastABbeforePair(list));
+             console.log("2nd IF. e = "+e+" | Move "+findFirstBAafterOne(list)+" to "+findFirstOpenSpot(list));
              moveBaggage(list, findFirstOpenSpot(list), findFirstBAafterOne(list));
-             console.log("After move 4 : " + list);
+             console.log("After move : " + list);
              //moveBaggage(list, 25, 22);
         }
     }
-    for( f = 1; f <= half; f++ ) {
-        if( f == 1 ){
-            console.log("hit 3rd if. f = "+f);
-            console.log("move "+findFirstPair(list)+" to "+findFirstOpenSpot(list));
-            moveBaggage(list, findFirstOpenSpot(list), findFirstPair(list));
-            console.log("After move 5 : " + list);
+    for( f = 1; f <= otherHalf; f++ ) {
+        if( isOdd(f) ){
+            console.log("3rd IF. f = "+f+" | Move "+findFirstBBpair(list)+" to "+findFirstOpenSpot(list));
+            moveBaggage(list, findFirstOpenSpot(list), findFirstBBpair(list));
+            console.log("After move : " + list);
             //moveBaggage(list, 22, 15);
         }
-        else if( f == 2  ){
-            console.log("hit 4th if. f = "+f);
-            console.log("move "+findLastPair(list)+" to "+findFirstOpenSpot(list));
-            moveBaggage(list, findFirstOpenSpot(list), findLastPair(list));
-            console.log("After move 6 : " + list);
+        else if( !isOdd(f)  ){
+            console.log("4th IF. f = "+f+" | Move "+findFirstAApair(list)+" to "+findFirstOpenSpot(list));
+            moveBaggage(list, findFirstOpenSpot(list), findFirstAApair(list));
+            console.log("After move : " + list);
             //moveBaggage(list, 15, 26);
         }
-        else if( isOdd(f) ){
-            console.log("hit 5th if. f = "+f);
-            console.log("move "+findFirstAltPair(list)+" to "+findFirstOpenSpot(list));
+       /* else if( isOdd(f) ){
+            console.log("5th IF. f = "+f+" | Move "+findFirstAltPair(list)+" to "+findFirstOpenSpot(list));
             moveBaggage(list, findFirstOpenSpot(list), findFirstAltPair(list));
-            console.log("After move 7 : " + list);
+            console.log("After move : " + list);
             //moveBaggage(list, 26, 19);
         }
         else if( !isOdd(f) ){
-            console.log("hit 6th if. f = "+f);
-            console.log("move "+findLastAltPair(list)+" to "+findFirstOpenSpot(list));
+            console.log("6th IF. f = "+f+" | Move "+findLastAltPair(list)+" to "+findFirstOpenSpot(list));
             moveBaggage(list, findFirstOpenSpot(list), findLastAltPair(list));
-            console.log("After move 8 : " + list);
+            console.log("After move : " + list);
             //moveBaggage(list, 19, 30);
-        }
+        } */
         else {
             console.log("For loop finished. e = "+e);
         }
