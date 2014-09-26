@@ -1,4 +1,4 @@
-var n = 16;
+var n = 20;
 
 function isOdd(num) { return num % 2;}
 
@@ -73,19 +73,6 @@ function findLastABbeforePair(list) {
     }
 }
 
-function findFirstBAafterOne(list) {
-     for( i = list.length / 2 + 1; i <= list.length; i++) {
-        var next = i + 1;
-        var prev = i - 1;
-        var prev1 = i - 2;
-        var prev2 = i - 3;
-        if( list[i] == "B" && list[next] == "A" && (list[prev] == "A")) {
-            var index = i;
-            return index;
-        }
-     }
-}
-
 function findFirstBAafterPair(list) {
     for( i = list.length / 2 - 2; i <= list.length; i++) {
         var next = i + 1;
@@ -93,8 +80,12 @@ function findFirstBAafterPair(list) {
         var next2 = i + 3;
         var next3 = i + 4;
         var next4 = i + 5;
-        if( list[i] == list[next] && (list[next1] != list[next2]) && (list[next2] == "B" && list[next3] == "A")) {
+        if( list[i] == list[next] && (list[next1] != list[next2]) && (list[next2] == "B" && list[next3] == "A") ) {
+            console.log("next2");
             return next2;
+        }
+        else if( list[i] == list[next] && list[next] == "B" && list[next1] == "A" && list[next3] === "" ) {
+            return next;
         }
      }
 }
@@ -213,7 +204,3 @@ function sortBaggage(list) {
 }
 
 sortBaggage(baggageList);
-
-// http://keet.wordpress.com/2014/06/28/acm-icpc-2014-solution-to-problem-a-baggage/
-
-// http://icpc.baylor.edu/download/worldfinals/problems/icpc2014.pdf
