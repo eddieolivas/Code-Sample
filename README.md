@@ -58,9 +58,13 @@ n = 5
 Sample output 1:
 
 8 to -1
+
 3 to 8
+
 6 to 3
+
 0 to 6
+
 9 to 0
 
 Sample Input 2:
@@ -70,11 +74,18 @@ n = 8
 Sample Output 2:
 
 10 to -1
+
 3 to 10
+
 14 to 3
+
 7 to 14
+
 0 to 7
+
 11 to 0
+
 4 to 11
+
 15 to 4
 
