@@ -1,4 +1,4 @@
-var n = 20;
+var n = 12;
 
 function isOdd(num) { return num % 2;}
 
@@ -52,23 +52,26 @@ function findFirstBA(list) {
 }
 
 function findLastABbeforePair(list) {
-    for( i = list.length - 1; i <= list.length; i--) {
-        var prev = i - 1;
-        var before = i - 2;
-        var beefore = i - 3;
-        var index = i - 4;
-        var listBefore = list[before];
-        var listBeefore = list[beefore];
+    var startPoint = findFirstOpenSpot(list);
+    for( i = startPoint; i <= list.length; i++) {
+        var next = i + 1;
+        var next2 = i + 2;
+        var next3 = i + 3;
+        var next4 = i + 4;
+        var value = list[i] + list[next];
+        var nextValue = list[next3] + list[next4];
             
-        if( (list[i] == list[prev]) && (listBefore != listBeefore) ) {
+        if( (value == "AB") && (nextValue == "BB") ) {
             /*console.log("i = "+i);
             console.log("prev = "+list[prev]+" "+prev);
             console.log("before ="+list[before]);
             console.log("beefore ="+list[beefore]);*/
-            return index;
+            console.log("booo");
+            return i;
         }
-        else {
-            continue;
+        else if(i >= Math.ceil(n/2) && value == "AB" && list[next2] == "B"){
+            console.log("vooodooo");
+            return i;
         }
     }
 }
@@ -81,7 +84,6 @@ function findFirstBAafterPair(list) {
         var next3 = i + 4;
         var next4 = i + 5;
         if( list[i] == list[next] && (list[next1] != list[next2]) && (list[next2] == "B" && list[next3] == "A") ) {
-            console.log("next2");
             return next2;
         }
         else if( list[i] == list[next] && list[next] == "B" && list[next1] == "A" && list[next3] === "" ) {
@@ -139,6 +141,8 @@ function sortBaggage(list) {
     
     var half = Math.ceil((n - 2) / 2);
     var otherHalf = Math.ceil(n / 2);
+    console.log("half = "+half);
+    console.log("otherHalf = "+otherHalf);
     for( e = 1; e < half; e++ ) {
         if( isOdd(e) ){
             console.log("1st IF. e = "+e+" | Move "+findLastABbeforePair(list)+" to "+findFirstOpenSpot(list));
@@ -153,35 +157,69 @@ function sortBaggage(list) {
              //moveBaggage(list, 25, 22);
         }
     }
-    for( f = 1; f <= otherHalf; f++ ) {
-        if( isOdd(f) ){
-            console.log("3rd IF. f = "+f+" | Move "+findFirstBBpair(list)+" to "+findFirstOpenSpot(list));
-            moveBaggage(list, findFirstOpenSpot(list), findFirstBBpair(list));
-            console.log("After move : " + list);
-            //moveBaggage(list, 22, 15);
-        }
-        else if( !isOdd(f)  ){
-            console.log("4th IF. f = "+f+" | Move "+findFirstAApair(list)+" to "+findFirstOpenSpot(list));
-            moveBaggage(list, findFirstOpenSpot(list), findFirstAApair(list));
-            console.log("After move : " + list);
-            //moveBaggage(list, 15, 26);
-        }
-       /* else if( isOdd(f) ){
-            console.log("5th IF. f = "+f+" | Move "+findFirstAltPair(list)+" to "+findFirstOpenSpot(list));
-            moveBaggage(list, findFirstOpenSpot(list), findFirstAltPair(list));
-            console.log("After move : " + list);
-            //moveBaggage(list, 26, 19);
-        }
-        else if( !isOdd(f) ){
-            console.log("6th IF. f = "+f+" | Move "+findLastAltPair(list)+" to "+findFirstOpenSpot(list));
-            moveBaggage(list, findFirstOpenSpot(list), findLastAltPair(list));
-            console.log("After move : " + list);
-            //moveBaggage(list, 19, 30);
-        } */
-        else {
-            console.log("For loop finished. e = "+e);
-        }
+    if(isOdd(n)){
+        for( f = 1; f <= otherHalf; f++ ) {
+            if( isOdd(f) ){
+                console.log("3rd IF. f = "+f+" | Move "+findFirstBBpair(list)+" to "+findFirstOpenSpot(list));
+                moveBaggage(list, findFirstOpenSpot(list), findFirstBBpair(list));
+                console.log("After move : " + list);
+                //moveBaggage(list, 22, 15);
+            }
+            else if( !isOdd(f)  ){
+                console.log("4th IF. f = "+f+" | Move "+findFirstAApair(list)+" to "+findFirstOpenSpot(list));
+                moveBaggage(list, findFirstOpenSpot(list), findFirstAApair(list));
+                console.log("After move : " + list);
+                //moveBaggage(list, 15, 26);
+            }
+           /* else if( isOdd(f) ){
+                console.log("5th IF. f = "+f+" | Move "+findFirstAltPair(list)+" to "+findFirstOpenSpot(list));
+                moveBaggage(list, findFirstOpenSpot(list), findFirstAltPair(list));
+                console.log("After move : " + list);
+                //moveBaggage(list, 26, 19);
+            }
+            else if( !isOdd(f) ){
+                console.log("6th IF. f = "+f+" | Move "+findLastAltPair(list)+" to "+findFirstOpenSpot(list));
+                moveBaggage(list, findFirstOpenSpot(list), findLastAltPair(list));
+                console.log("After move : " + list);
+                //moveBaggage(list, 19, 30);
+            } */
+            else {
+                console.log("For loop finished. e = "+e);
+            }
         
+        }
+    }
+    else {
+        for( f = 1; f < otherHalf; f++ ) {
+            if( isOdd(f) ){
+                console.log("3rd IF. f = "+f+" | Move "+findFirstBBpair(list)+" to "+findFirstOpenSpot(list));
+                moveBaggage(list, findFirstOpenSpot(list), findFirstBBpair(list));
+                console.log("After move : " + list);
+                //moveBaggage(list, 22, 15);
+            }
+            else if( !isOdd(f)  ){
+                console.log("4th IF. f = "+f+" | Move "+findFirstAApair(list)+" to "+findFirstOpenSpot(list));
+                moveBaggage(list, findFirstOpenSpot(list), findFirstAApair(list));
+                console.log("After move : " + list);
+                //moveBaggage(list, 15, 26);
+            }
+           /* else if( isOdd(f) ){
+                console.log("5th IF. f = "+f+" | Move "+findFirstAltPair(list)+" to "+findFirstOpenSpot(list));
+                moveBaggage(list, findFirstOpenSpot(list), findFirstAltPair(list));
+                console.log("After move : " + list);
+                //moveBaggage(list, 26, 19);
+            }
+            else if( !isOdd(f) ){
+                console.log("6th IF. f = "+f+" | Move "+findLastAltPair(list)+" to "+findFirstOpenSpot(list));
+                moveBaggage(list, findFirstOpenSpot(list), findLastAltPair(list));
+                console.log("After move : " + list);
+                //moveBaggage(list, 19, 30);
+            } */
+            else {
+                console.log("For loop finished. e = "+e);
+            }
+            
+        }
     }
     /* moveBaggage(list, findFirstOpenSpot(list), findLastABbeforePair(list));
     //moveBaggage(list, 18, 25);
