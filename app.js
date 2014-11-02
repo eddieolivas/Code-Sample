@@ -51,6 +51,7 @@ function findFirstBA(list) {
     }
 }
 
+//This function finds the last AB before a pair of AA or BB
 function findLastABbeforePair(list) {
     var startPoint = findFirstOpenSpot(list);
     for( i = startPoint; i <= list.length; i++) {
@@ -122,7 +123,6 @@ function findFirstOpenSpot(list) {
         }
     }
 }
-
 
 /* The sortBaggage function take all of the previous functions and puts them together to effectively solve the problem.*/
 function sortBaggage(list) {
