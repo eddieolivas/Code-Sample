@@ -1,4 +1,4 @@
-var n = 9;
+var n = 6;
 
 function isOdd(num) { return num % 2;}
 
@@ -145,13 +145,19 @@ function sortBaggage(list) {
     
     if(isOdd(n))
     {
-        otherHalf = Math.ceil((n - 2) / 2);
-        half = Math.ceil(n / 2)-1;
+        if(n % 4 == 1) {
+            otherHalf = Math.ceil(n / 2);
+            half = Math.ceil(n / 2)-1;
+        }
+        else {
+            otherHalf = Math.ceil(n / 2)+1;
+            half = Math.ceil((n - 2) / 2);
+        }
     }
     else
     {
-        otherHalf = Math.ceil((n - 1) / 2);
-        half = Math.ceil(n / 2);
+        otherHalf = Math.ceil(n / 2);
+        half = Math.ceil((n - 2) / 2);
     }
     
     console.log("half = "+half);
@@ -174,7 +180,7 @@ function sortBaggage(list) {
             }
         }
         
-        for( f = 1; f <= otherHalf; f++ ) {
+        for( f = 1; f < otherHalf; f++ ) {
             if( isOdd(f) ){
                 console.log("First BB. f = "+f+" | Move "+findFirstBBpair(list)+" to "+findFirstOpenSpot(list));
                 moveBaggage(list, findFirstOpenSpot(list), findFirstBBpair(list));
@@ -207,7 +213,7 @@ function sortBaggage(list) {
     }
     else {
         
-        for( e = 1; e < half-1; e++ ) {
+        for( e = 1; e < half; e++ ) {
             if( isOdd(e) ){
                 console.log("Last AB. e = "+e+" | Move "+findLastABbeforePair(list)+" to "+findFirstOpenSpot(list));
                 moveBaggage(list, findFirstOpenSpot(list), findLastABbeforePair(list));
