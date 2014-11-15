@@ -1,4 +1,4 @@
-var n = 6;
+var n = 12;
 
 function isOdd(num) { return num % 2;}
 
